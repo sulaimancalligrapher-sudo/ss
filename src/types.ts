@@ -3,35 +3,39 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export interface StudentItem {
-  studentId: string | number;
+export interface StudentRow {
+  studentId: string;
   studentName: string;
-  lessonNumber: string | number;
+  lessonNumber: number;
   imageSubmissionCount: number;
-  imageFileId: string | null;
-  imageMimeType: string | null;
+  imageUrl: string;
   audioSubmissionCount: number;
-  audioFileId: string | null;
-  audioMimeType: string | null;
+  audioUrl: string;
+  isSaved: boolean;
+  notes: string;
+  imageGrade: string;
+  modifiedImageUrl: string;
+  audioGrade: string;
+  additionalImageUrl: string;
+  videoUrl: string;
+  correctionAudioUrl: string;
+  date: string;
+  submissionCount: number;
   additionalT: string;
   additionalU: string;
   additionalV: string;
   additionalW: string;
   additionalX: string;
   additionalY: string;
-  row: number;
-  isSaved: boolean;
-  notes?: string;
-  imageGrade?: string;
-  audioGrade?: string;
+  rowNumber: number;
 }
 
-export interface TeacherUser {
+export interface Teacher {
   username: string;
   password?: string;
-  status: string; // 'نعم' or 'لا'
-  allowedDevices?: number;
-  devices?: { deviceId: string; location: string }[];
+  status: string; // "نعم" or "لا"
+  allowedDevices: number;
+  devices: { deviceId: string; location: string }[];
 }
 
 export interface PredefinedText {
@@ -49,43 +53,24 @@ export interface WatermarkSettings {
   textPosition: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center';
 }
 
-export interface DrawingPoint {
-  x: number;
-  y: number;
-  pressure?: number;
+export interface AppProfile {
+  logoUrl: string;
+  name: string;
+  description: string;
 }
 
-export interface DrawingPath {
-  points: DrawingPoint[];
-  lineWidth: number;
-  lineColor: string;
-  isChisel: boolean;
-  nibAngle: number;
+export interface AppContact {
+  facebook: string;
+  instagram: string;
+  youtube: string;
+  line: string;
 }
 
-export interface StickerItem {
-  x: number;
-  y: number;
-  base64: string;
-  size: number;
-  fileId?: string;
+export interface ConnectionConfig {
+  gasUrl: string;
+  useSimulator: boolean;
 }
 
-export interface TextItem {
-  lines: string[];
-  x: number;
-  y: number;
-  color: string;
-  fontSize: number;
-  fontFamily: string;
-  background: {
-    enabled: boolean;
-    color: string;
-  };
-}
-
-export interface HistoryItem {
-  type: 'path' | 'sticker' | 'text';
-  data: DrawingPath | StickerItem | TextItem;
-  index: number;
+export interface CorrectionHistoryLog extends StudentRow {
+  logDate: string;
 }
